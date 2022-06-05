@@ -1,28 +1,28 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int max_diff(int A[], int n)
+int curr,diff;
+int max_dif(int arr[], int n)
 {
-    int cur_min, max_dif;
-    int i=0,j=1;
-    cur_min=A[i];
-    max_dif=(A[j]-A[i]);
-    for(j=1;j<n;j++)
-    {
-        if((A[j]-cur_min)>max_dif)
-        {
-            max_dif=A[j]-cur_min;
-        }
-        if(A[j]<cur_min)
-        {
-            cur_min=A[j];
-        }
-    }
-    return max_dif;
+  curr=arr[0];
+  diff=0;
+  for(int k=1;k<n;k++)
+  {
+      if((arr[k]-curr)<0)
+      {
+         curr=arr[k]; 
+      }
+      else
+      {
+          if((arr[k]-curr)>diff)
+          {
+              diff=arr[k]-curr;
+          }
+      }
+  }
+  return diff;
 }
-
-int main() {
-	int arr[6]={2,3,8,-3,4,10};
-	int s=6;
-	cout<<max_diff(arr,s);
+int main()
+{
+    int arr1[3]={10,20,30};
+    cout<<max_dif(arr1,3);
 }

@@ -1,38 +1,29 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-int k_sum(int A[], int n, int k)
+int max_sum,sum,init=0;
+int max_sum_sliding_window(int arr[],int n,int k)
 {
-    int a=0,b=0,s_max=0,s_cur=0;
-    for(int i=0;i<n;i++)
-    {
-        if(b!=k)
-        {
-            s_max=s_max+A[i];
-            s_cur=s_cur+A[i];
-            b++;
-        }
-        else
-        {
-            s_cur=s_cur-A[a];
-            s_cur=s_cur+A[i];
-            if(s_cur>s_max)
-            {
-                s_max=s_cur;
-            }
-            a++;
-        }
-    }
-        
-    return s_max;
-    
-   
+   for(int i=0;i<n;i++)
+   {
+     if(i>k-1)
+     {
+         sum=sum-arr[init];
+         init++;
+         sum=sum+arr[i];
+         max_sum=max(max_sum,sum);
+         
+         
+     }
+     else
+     {
+         sum=sum+arr[i];
+         max_sum=max(max_sum,sum);
+     }
+   }
+   return max_sum;
 }
-
-int main() {
-	int arr[9]={1,4,2,10,23,3,1,0,20};
-	int k=4;
-	cout<<k_sum(arr,9,k);
-	//int arr[4]={100,200,300};
-	//cout<<l_sum(arr,5);
+int main()
+{
+    int arr1[6]={1,8,30,-5,20,7};
+    cout<<sliding_window(arr1,6,3);
 }
